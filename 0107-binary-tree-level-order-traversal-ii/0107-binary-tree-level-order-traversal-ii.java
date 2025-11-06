@@ -18,25 +18,22 @@ class Solution {
         List<List<Integer>> res=new ArrayList<>();
         if(root==null)
         return res;
-        Queue<TreeNode> que=new LinkedList<>();
-        Stack<List<Integer>> st=new Stack<>();
-        que.add(root);
-        while(!que.isEmpty()){
-            int s=que.size();
+        Queue<TreeNode> qu=new LinkedList<>();
+        qu.add(root);
+        while(!qu.isEmpty()){
+            int s=qu.size();
             List<Integer> cur=new ArrayList<>();
             for(int i=0;i<s;i++){
-                TreeNode cure=que.poll();
+                TreeNode cure=qu.poll();
                 cur.add(cure.val);
                 if(cure.left!=null)
-                que.add(cure.left);
+                qu.add(cure.left);
                 if(cure.right!=null)
-                que.add(cure.right);
+                qu.add(cure.right);
             }
-        st.push(cur);
+            res.add(cur);
         }
-        while(!st.isEmpty()){
-            res.add(st.pop());
-        }
+        Collections.reverse(res);
         return res;
     }
 }
